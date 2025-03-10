@@ -352,7 +352,7 @@ body {
 
     .about-content {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
     }
 
     .about-image {
@@ -362,6 +362,8 @@ body {
 
     .about-text {
         order: 2;
+        text-align: center;
+        padding-right: 8%;
     }
 
     .about-image img {
@@ -587,6 +589,7 @@ body {
 
     .personal-image-grid {
         grid-template-columns: 1fr; /* Stack images in one column */
+        padding-right: 6%;
     }
 
     .image-caption {
@@ -594,7 +597,7 @@ body {
     }
 
     .personal-text {
-        padding: 15px;
+        padding-right: 13%;
     }
 }
 
@@ -887,6 +890,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 992px) {
+
     .contact-content {
         flex-direction: column;
         text-align: center;
@@ -901,6 +905,7 @@ body {
     .contact-form {
         text-align: left;
         width: 100%; /* Full width on smaller screens */
+        padding-right: 1993%;
     }
 
     .about-subheading {
