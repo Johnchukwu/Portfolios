@@ -1,11 +1,16 @@
 /* General Styles */
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling globally */
+}
+
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
+
 /* Navbar Styling */
 .navbar {
-    background-color: #343a40; /* Dark background */
+    background-color: #343a40;
     padding: 15px 20px;
     position: fixed;
     width: 100%;
@@ -61,8 +66,8 @@ body {
 
 /* Hover Effect */
 .nav-link:hover {
-    color: #e0e0e0; /* Light white */
-    font-weight: 700; /* Thicker text */
+    color: #e0e0e0;
+    font-weight: 700;
 }
 
 /* Bottom Line Effect */
@@ -81,17 +86,15 @@ body {
     width: 100%;
 }
 
-
-
 /* Hamburger Icon */
 .hamburger {
     display: none;
-    width: 40px; /* Adjust size */
+    width: 40px;
     height: 40px;
     cursor: pointer;
 }
 
-/* Mobile Navigation (Hidden by Default) */
+/* Mobile Navigation */
 .mobile-nav {
     display: none;
     flex-direction: column;
@@ -102,10 +105,15 @@ body {
     background-color: #343a40;
     text-align: center;
     padding: 15px 0;
-    transition: max-height 0.4s ease-in-out;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out; /* Added opacity transition */
+    opacity: 0; /* Hidden by default */
 }
 
-/* Mobile Navigation Links */
+.mobile-nav.show {
+    display: flex;
+    opacity: 1; /* Visible when shown */
+}
+
 .mobile-nav a {
     color: white;
     font-size: 1rem;
@@ -122,15 +130,11 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar-nav {
-        display: none; /* Hide normal nav */
+        display: none;
     }
 
     .hamburger {
-        display: block; /* Show hamburger icon */
-    }
-
-    .mobile-nav.show {
-        display: flex; /* Show mobile menu */
+        display: block;
     }
 }
 
@@ -140,23 +144,22 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 1% 10%;
-    background: #D9DCD6; /* Light gray background */
-    color: #2F6690; /* Deep blue text */
-    height: 100vh; /* Full viewport height */
+    background: #D9DCD6;
+    color: #2F6690;
+    height: 100vh;
 }
 
 /* Left Content (Text) */
 #text-content {
     flex: 3;
     max-width: 60%;
-    text-align: center; /* Center aligns content */
-    align-items: center;
+    text-align: center;
 }
 
 #text-content h2 {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #2F6690; /* Deep blue */
+    color: #2F6690;
     margin-bottom: 10px;
 }
 
@@ -166,16 +169,14 @@ body {
     margin-bottom: 15px;
 }
 
-/* Social Media Icons (Centered & Inline) */
+/* Social Media Icons */
 .social-icons {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centered */
+    justify-content: center;
     gap: 15px;
     margin: 20px auto;
 }
-
-/* Social Media Icons with Background */
 
 .social-icons a {
     display: flex;
@@ -184,27 +185,22 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: #2F6690; /* Background color */
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden; /* Ensures image stays inside */
+    background-color: #2F6690;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    overflow: hidden;
 }
 
-/* Properly Fitted Icons Inside */
 .social-icons img {
-    width: 65%; /* Adjust icon size */
+    width: 65%;
     height: 65%;
-    object-fit: contain; /* Keeps icon aspect ratio */
-    border-radius: 0; /* Removes the extra circle effect */
+    object-fit: contain;
 }
 
-/* Hover Effect */
 .social-icons a:hover {
-    background-color: #1E4C6D; /* Darker blue on hover */
-    transform: scale(1.1);
+    background-color: #1E4C6D;
 }
 
-
-/* Read More Button (Underline on Click) */
+/* Read More Button */
 #readMoreBtn {
     background: none;
     border: none;
@@ -224,95 +220,94 @@ body {
     bottom: -3px;
     width: 0%;
     height: 2px;
-    background-color: #1E4C6D; /* Darker underline color */
+    background-color: #1E4C6D;
     transition: width 0.3s ease-in-out;
 }
 
 #readMoreBtn:hover::after,
 #readMoreBtn:focus::after {
-    width: 100%; /* Expands underline */
+    width: 100%;
 }
 
 #readMoreBtn:hover,
 #readMoreBtn:focus {
-    color: #1E4C6D; /* Darker blue */
+    color: #1E4C6D;
 }
 
-/* Right Content (Rounded Image) */
-#image-content {
-    flex: 1;
-    display: flex;
-}
-
+/* Right Content (Image) with Animation */
 #image-content img {
     max-width: 400px;
     width: 100%;
-    border-radius: 50%; /* Makes the image circular */
-    border: 5px solid #2F6690; /* Adds a neat border */
+    border-radius: 50%;
+    border: 5px solid #2F6690;
     transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeInScale 1s ease-out forwards;
+    animation-delay: 1s;
 }
 
-/* Responsive Design */
+/* Animation Keyframe for Image */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 @media (max-width: 768px) {
     .home {
         flex-direction: column;
         text-align: center;
-        padding: 100px 5%; /* Adjusted padding to move content up */
+        padding: 100px 5%;
     }
 
     #image-content {
         justify-content: center;
-        margin-top: -40px; /* Move image up */
+        margin-top: -40px;
     }
 
     #image-content img {
         max-width: 250px;
     }
-
-    .social-icons {
-        justify-content: center;
-        margin-top: 10px; /* Adjusted position */
-    }
 }
-
 
 /* About Section */
 .about-section {
     padding: 80px 10%;
-    background-color: #ebebeb; /* Light background */
-    color: #2F6690; /* Deep blue text */
+    background-color: #ebebeb;
+    color: #2F6690;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Center the About Heading */
 .about-heading {
     text-align: center;
     width: 100%;
     margin-bottom: 20px;
 }
 
-/* "About" - Smaller */
 .about-heading h2 {
-    font-size: 1rem; /* Smaller size */
+    font-size: 1rem;
     font-weight: bold;
     color: #2F6690;
     margin: 0;
     display: inline-block;
 }
 
-/* "Background & Expertise" - Bigger & Cursive */
 .about-subheading {
-    font-size: 4rem; /* Bigger size */
+    font-size: 4rem;
     font-style: italic;
-    font-family: 'Dancing Script', cursive; /* Use a stylish cursive font */
-    color: #1E4C6D; /* Darker blue */
-    margin-left: 10px; /* Space between About and this */
+    font-family: 'Dancing Script', cursive;
+    color: #1E4C6D;
+    margin-left: 10px;
     display: inline-block;
 }
 
-/* About Content Layout */
 .about-content {
     display: flex;
     align-items: center;
@@ -322,21 +317,13 @@ body {
     width: 100%;
 }
 
-/* Left Side - Image */
-.about-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
 .about-image img {
     max-width: 100%;
-    width: 400px; /* Adjust width */
+    width: 400px;
     border-radius: 10px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Right Side - Text */
 .about-text {
     flex: 2;
     font-size: 1.1rem;
@@ -344,7 +331,6 @@ body {
     line-height: 1.6;
 }
 
-/* Responsive Design for Mobile */
 @media (max-width: 992px) {
     .about-section {
         padding: 60px 5%;
@@ -356,7 +342,7 @@ body {
     }
 
     .about-image {
-        order: 1; /* Ensures image is on top in mobile */
+        order: 1;
         margin-bottom: 20px;
     }
 
@@ -370,23 +356,15 @@ body {
         width: 100%;
         max-width: 300px;
     }
-
-    .about-heading h2 {
-        font-size: 1.5rem; /* Slightly smaller on mobile */
-    }
-
-    .about-subheading {
-        font-size: 2rem; /* Adjust for mobile */
-    }
 }
+
 /* Key Achievements Section */
 .achievements {
     padding: 60px 10%;
     text-align: center;
-    background-color: #f0f0f0; /* Light background */
+    background-color: #f0f0f0;
 }
 
-/* Key Achievements Title */
 .achievements h3 {
     font-size: 2rem;
     font-weight: bold;
@@ -394,7 +372,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* Grid Layout */
 .achievements-grid {
     display: flex;
     justify-content: space-between;
@@ -403,7 +380,6 @@ body {
     margin: 0 auto;
 }
 
-/* Achievement Cards */
 .achievement {
     flex: 1;
     background: white;
@@ -414,22 +390,16 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(30%);
-    -webkit-transform: translateY(30%);
-    -moz-transform: translateY(30%);
-    -ms-transform: translateY(30%);
-    -o-transform: translateY(30%);
 }
 
-/* Hover Effect */
 .achievement:hover {
-    transform: scale(1.1); /* Expands the card */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Adds a larger shadow */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
-/* Icon Styling */
+
 .achievement .icon {
     width: 60px;
     height: 60px;
@@ -441,14 +411,12 @@ body {
     height: auto;
 }
 
-/* Text Styling */
 .achievement p {
     font-size: 1rem;
     color: #333;
     font-weight: 500;
 }
 
-/* Bounce Animation */
 @keyframes bounceIn {
     0% {
         opacity: 0;
@@ -463,18 +431,10 @@ body {
     }
 }
 
-/* Apply animation when visible */
 .achievement.visible {
     animation: bounceIn 0.6s ease-in-out forwards;
 }
 
-/* Add delay for sequential animation */
-.achievement:nth-child(1) { animation-delay: 0.2s; }
-.achievement:nth-child(2) { animation-delay: 0.4s; }
-.achievement:nth-child(3) { animation-delay: 0.6s; }
-.achievement:nth-child(4) { animation-delay: 0.8s; }
-
-/* Responsive Design for Mobile */
 @media (max-width: 992px) {
     .achievements-grid {
         flex-direction: column;
@@ -485,11 +445,10 @@ body {
 /* Personal Section */
 .personal {
     padding: 80px 10%;
-    background: #dadbda; /* Ensure background color is applied */
-    color: #2F6690; /* Deep blue text */
+    background: #dadbda;
+    color: #2F6690;
 }
 
-/* Section Header */
 .section-header {
     text-align: center;
     margin-bottom: 40px;
@@ -498,7 +457,7 @@ body {
 .section-tag {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #1E4C6D; /* Darker blue */
+    color: #1E4C6D;
 }
 
 .section-title {
@@ -507,7 +466,6 @@ body {
     color: #2F6690;
 }
 
-/* Personal Content Layout */
 .personal-content {
     display: flex;
     justify-content: space-between;
@@ -516,15 +474,13 @@ body {
     margin: 0 auto;
 }
 
-/* Left Side - Image Grid (2x2 Layout) */
 .personal-image-grid {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 Columns */
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
 
-/* Individual Image Styles */
 .personal-image {
     position: relative;
     border-radius: 10px;
@@ -532,7 +488,6 @@ body {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Full Width Images */
 .personal-image img {
     width: 100%;
     height: 100%;
@@ -541,12 +496,10 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Image Hover Effect */
 .personal-image:hover img {
     transform: scale(1.05);
 }
 
-/* Text Overlay Inside Image */
 .image-caption {
     position: absolute;
     bottom: 0;
@@ -560,27 +513,23 @@ body {
     transition: background 0.3s ease-in-out;
 }
 
-
-/* Right Side - Text */
 .personal-text {
     flex: 1.2;
     font-size: 1.1rem;
     color: #333;
     line-height: 1.6;
-    background: #D9DCD6; /* Ensure text background matches */
+    background: #D9DCD6;
     padding: 20px;
     border-radius: 10px;
 }
 
-/* Adjust heading colors */
 .personal-text h3 {
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: 15px;
-    color: #1E4C6D; /* Darker blue */
+    color: #1E4C6D;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
     .personal-content {
         flex-direction: column;
@@ -588,12 +537,8 @@ body {
     }
 
     .personal-image-grid {
-        grid-template-columns: 1fr; /* Stack images in one column */
+        grid-template-columns: 1fr;
         padding-right: 6%;
-    }
-
-    .image-caption {
-        font-size: 1rem; /* Adjust for smaller screens */
     }
 
     .personal-text {
@@ -601,33 +546,28 @@ body {
     }
 }
 
-
-
 /* Publications Section */
 #publications {
     padding: 80px 10%;
-    background-color: #e5e6e3; /* Light gray background */
-    color: #2F6690; /* Deep blue text */
+    background-color: #e5e6e3;
+    color: #2F6690;
     text-align: center;
 }
 
-/* Centered Section Heading */
 #publications h2 {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 40px;
 }
 
-/* Grid Layout for Publications - Updated Class */
 .publications-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 30px; /* Space between items */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Publication Card */
 .publication-card {
     display: flex;
     flex-direction: column;
@@ -639,13 +579,11 @@ body {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Hover Effect */
 .publication-card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Image Styling */
 .publication-image {
     width: 100%;
     max-width: 200px;
@@ -655,11 +593,6 @@ body {
 .publication-image img {
     width: 100%;
     border-radius: 10px;
-}
-
-/* Text Styling */
-.publication-text {
-    text-align: center;
 }
 
 .publication-text h3 {
@@ -674,37 +607,31 @@ body {
     color: #333;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
     .publications-container {
-        grid-template-columns: 1fr; /* Stack items in one column on small screens */
+        grid-template-columns: 1fr;
     }
 }
 
-
-
 /* Research Section */
 .research-section {
-    background-color: #2F6690; /* Dark Blue */
+    background-color: #2F6690;
     color: white;
     padding: 80px 10%;
     text-align: center;
 }
 
-/* Unique Container for Research */
 .research-container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Section Heading */
 .research-container h2 {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 30px;
 }
 
-/* Research Description */
 .research-description {
     font-size: 1.2rem;
     max-width: 800px;
@@ -712,21 +639,18 @@ body {
     color: #f8f9fa;
 }
 
-/* Grid Layout for Research Topics */
 .research-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 Columns */
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     justify-content: center;
 }
 
-/* Last Item (HCI) Takes Full Width at the Bottom */
 .research-grid .last-card {
-    grid-column: span 2; /* Centered */
+    grid-column: span 2;
     justify-self: center;
 }
 
-/* Research Card Layout */
 .research-card {
     background: white;
     padding: 25px;
@@ -739,21 +663,18 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Hover Effect */
 .research-card:hover {
     transform: translateY(-5px);
 }
 
-/* Enlarged Image Section */
 .research-image img {
     width: 100%;
-    max-width: 250px; /* Increased from 180px */
+    max-width: 250px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px #16425B;
     margin-bottom: 15px;
 }
 
-/* Text Section */
 .research-text h3 {
     font-size: 22px;
     font-weight: bold;
@@ -766,21 +687,15 @@ body {
     color: #16425B;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
     .research-grid {
-        grid-template-columns: 1fr; /* Stack cards in one column */
+        grid-template-columns: 1fr;
     }
 
     .research-grid .last-card {
         grid-column: span 1;
     }
-
-    .research-image img {
-        max-width: 220px; /* Adjust image size on smaller screens */
-    }
 }
-
 
 /* Contact Section */
 .contact {
@@ -789,7 +704,6 @@ body {
     color: #2F6690;
 }
 
-/* Contact Header Styling */
 .section-header {
     text-align: center;
     font-size: 2rem;
@@ -797,44 +711,39 @@ body {
     margin-bottom: 40px;
 }
 
-/* Larger "GET IN TOUCH" Text with Cursive Font */
 .about-subheading {
     font-size: 3rem;
-    font-family: "Dancing Script", cursive; /* Cursive font */
+    font-family: "Dancing Script", cursive;
     font-weight: bold;
     color: #1E4C6D;
 }
 
-/* Contact Content Layout */
 .contact-content {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 80px; /* Increased spacing between text & form */
+    gap: 80px;
 }
 
-/* Left Side - Contact Info */
 .contact-info {
     flex: 1;
-    padding-right: 50px; /* Added right padding for spacing */
+    padding-right: 50px;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    margin-bottom: 25px; /* Increased spacing between items */
+    margin-bottom: 25px;
 }
 
-/* Contact Icons */
 .contact-icon {
     font-size: 1.8rem;
     color: #1E4C6D;
     margin-right: 15px;
 }
 
-/* Contact Details */
 .contact-details h3 {
     font-size: 1.6rem;
     color: #1E4C6D;
@@ -846,14 +755,12 @@ body {
     color: #333;
 }
 
-/* Right Side - Contact Form */
 .contact-form {
-    flex: 1.2; /* Made the form slightly larger */
+    flex: 1.2;
 }
 
-/* Form Input Styling */
 .form-group {
-    margin-bottom: 20px; /* Increased spacing */
+    margin-bottom: 20px;
 }
 
 .form-group label {
@@ -865,19 +772,18 @@ body {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 14px; /* Increased padding for better usability */
+    padding: 14px;
     font-size: 1.1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
 }
 
-/* Send Button */
 .primary-btn {
     background-color: #2F6690;
     color: white;
     font-size: 1.3rem;
-    padding: 14px 24px; /* Increased button size */
+    padding: 14px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -888,13 +794,11 @@ body {
     background-color: #1E4C6D;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
-
     .contact-content {
         flex-direction: column;
         text-align: center;
-        gap: 40px; /* Adjust spacing */
+        gap: 40px;
     }
 
     .contact-info {
@@ -904,17 +808,9 @@ body {
 
     .contact-form {
         text-align: left;
-        width: 100%; /* Full width on smaller screens */
-        padding-right: 1993%;
-    }
-
-    .about-subheading {
-        font-size: 2.5rem; /* Adjust size for smaller screens */
+        width: 100%;
     }
 }
-
-
-
 
 footer {
     width: auto;
@@ -924,6 +820,9 @@ footer {
     font-weight: 600;
     line-height: 17px;
     text-align: center;
+}
 
-
+/* Make sections visible when they have the visible class */
+.animate-section.visible {
+    opacity: 1;
 }
